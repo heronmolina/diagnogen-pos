@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual de pruebas — POS Diagnogen</title>
+<meta name="robots" content="noindex">
+</head>
+<body>
+<style>
+  :root {
+    --papel:      #F4EFE6;
+    --papel-2:    #EBE3D3;
+    --blanco:     #FCFAF4;
+    --tinta:      #173540;
+    --tinta-2:    #2C4A55;
+    --tinta-suave:#4E6670;
+    --linea:      #DED4C1;
+    --linea-2:    #CBBEA6;
+
+    --teal:       #17A2AC;
+    --teal-claro: #D6EEF0;
+    --teal-borde: #7FCBD1;
+    --teal-texto: #0C737D;
+
+    --petroleo:       #17607F;
+    --petroleo-claro: #E0EBF0;
+
+    --oro:        #C9A44C;
+    --oro-claro:  #F2E9CF;
+    --oro-borde:  #D2B061;
+
+    --verde:      #1F7A5C;
+    --verde-claro:#DCEDE4;
+
+    --ambar:      #8A5A10;
+    --ambar-claro:#F3E6C6;
+
+    --carmin:       #BE3A5B;
+    --carmin-claro: #F6E0E5;
+
+    --display: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+    --sans:    -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --mono:    ui-monospace, 'SFMono-Regular', 'IBM Plex Mono', Menlo, monospace;
+
+    --r-sm: 10px; --r: 14px; --r-lg: 20px;
+    --sombra: 0 1px 2px rgba(23,53,64,.04), 0 3px 10px rgba(23,53,64,.08);
+    --sombra-alta: 0 2px 6px rgba(23,53,64,.05), 0 12px 30px -8px rgba(23,53,64,.16);
+  }
+
+  :root[data-theme="dark"] {
+    --papel:      #17242A;
+    --papel-2:    #1E2E35;
+    --blanco:     #22333B;
+    --tinta:      #EDE7DA;
+    --tinta-2:    #D6CDBA;
+    --tinta-suave:#9FB0B6;
+    --linea:      #33454D;
+    --linea-2:    #3E525A;
+    --teal-claro: #1B4247;
+    --petroleo-claro: #1C3341;
+    --oro-claro:  #3A331E;
+    --verde-claro:#1B3A30;
+    --ambar-claro:#3A2E12;
+    --carmin-claro: #3D2029;
+    --sombra: 0 1px 2px rgba(0,0,0,.25), 0 3px 12px rgba(0,0,0,.35);
+    --sombra-alta: 0 2px 8px rgba(0,0,0,.3), 0 16px 34px -10px rgba(0,0,0,.5);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --papel:      #17242A;
+      --papel-2:    #1E2E35;
+      --blanco:     #22333B;
+      --tinta:      #EDE7DA;
+      --tinta-2:    #D6CDBA;
+      --tinta-suave:#9FB0B6;
+      --linea:      #33454D;
+      --linea-2:    #3E525A;
+      --teal-claro: #1B4247;
+      --petroleo-claro: #1C3341;
+      --oro-claro:  #3A331E;
+      --verde-claro:#1B3A30;
+      --ambar-claro:#3A2E12;
+      --carmin-claro: #3D2029;
+      --sombra: 0 1px 2px rgba(0,0,0,.25), 0 3px 12px rgba(0,0,0,.35);
+      --sombra-alta: 0 2px 8px rgba(0,0,0,.3), 0 16px 34px -10px rgba(0,0,0,.5);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: var(--sans);
+    line-height: 1.55;
+  }
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* ---- Header ---- */
+  .cabecera {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--tinta);
+    flex-wrap: wrap;
+  }
+  .cabecera h1 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(26px, 5vw, 32px);
+    letter-spacing: 0.005em;
+    margin: 0;
+    color: var(--teal-texto);
+    text-wrap: balance;
+  }
+  .cabecera .sub { margin: 2px 0 0; color: var(--tinta-suave); font-size: 0.92rem; }
+
+  .tira-oro {
+    align-self: flex-start;
+    background: var(--petroleo);
+    color: #FCFAF4;
+    border-radius: var(--r-sm);
+    padding: 8px 14px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ---- Índice ---- */
+  .indice {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .indice a {
+    text-decoration: none;
+    font-size: 0.78rem; font-weight: 600;
+    color: var(--tinta-2);
+    background: var(--blanco);
+    border: 1px solid var(--linea);
+    border-radius: 100px;
+    padding: 7px 13px;
+  }
+  .indice a:hover { border-color: var(--teal-borde); color: var(--teal-texto); }
+
+  /* ---- Secciones ---- */
+  section { display: flex; flex-direction: column; gap: 14px; scroll-margin-top: 20px; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1.35rem;
+    color: var(--tinta);
+    margin: 0;
+    text-wrap: balance;
+  }
+  h2 .eyebrow {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-texto);
+    margin-bottom: 4px;
+  }
+  p { margin: 0; color: var(--tinta-2); max-width: 65ch; }
+  a { color: var(--teal-texto); }
+
+  /* ---- Tarjeta de acceso ---- */
+  .accesos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .cred {
+    background: var(--blanco);
+    border: 1px solid var(--linea);
+    border-radius: var(--r);
+    box-shadow: var(--sombra);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cred.gerencia { border: 1.5px solid var(--oro-borde); background: linear-gradient(var(--blanco), var(--blanco)) padding-box, var(--oro-claro); }
+  .cred .rol {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--teal-texto); display: inline-flex; align-items: center; gap: 6px; width: fit-content;
+    background: var(--teal-claro); padding: 3px 9px; border-radius: 100px;
+  }
+  .cred.gerencia .rol { color: var(--tinta); background: var(--oro-claro); border: 1px solid var(--oro-borde); }
+  .cred dl { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+  .cred dt { font-size: 0.7rem; color: var(--tinta-suave); }
+  .cred dd { margin: 0; font-family: var(--mono); font-size: 0.92rem; font-variant-numeric: tabular-nums; word-break: break-all; }
+
+  .aviso {
+    display: flex; gap: 10px; align-items: flex-start;
+    background: var(--ambar-claro); border: 1px solid var(--ambar); border-radius: var(--r-sm);
+    padding: 12px 14px; font-size: 0.88rem; color: var(--tinta-2);
+  }
+  .aviso strong { color: var(--ambar); }
+
+  /* ---- Bloques por rol ---- */
+  .rol-bloque {
+    background: var(--blanco);
+    border: 1px solid var(--linea);
+    border-radius: var(--r-lg);
+    box-shadow: var(--sombra);
+    overflow: hidden;
+  }
+  .rol-cabecera {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 16px 20px;
+    background: var(--petroleo-claro);
+    border-bottom: 1px solid var(--linea);
+  }
+  .rol-cabecera h3 { margin: 0; font-family: var(--display); font-weight: 500; font-size: 1.15rem; }
+  .rol-cabecera .quien { font-size: 0.8rem; color: var(--tinta-suave); }
+
+  .pasos { list-style: none; margin: 0; padding: 6px 20px 20px; display: flex; flex-direction: column; }
+  .pasos li {
+    display: grid; grid-template-columns: 28px 1fr; gap: 14px;
+    padding: 14px 0; border-bottom: 1px solid var(--linea);
+    position: relative;
+  }
+  .pasos li:last-child { border-bottom: none; padding-bottom: 4px; }
+  .pasos .n {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--petroleo); color: #FCFAF4;
+    font-family: var(--mono); font-size: 0.8rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .pasos .txt { display: flex; flex-direction: column; gap: 4px; }
+  .pasos .txt strong { color: var(--tinta); font-size: 0.98rem; }
+  .pasos .txt span { color: var(--tinta-suave); font-size: 0.88rem; }
+  .pasos .txt .nota {
+    margin-top: 4px; font-size: 0.82rem; color: var(--teal-texto);
+    background: var(--teal-claro); border-radius: 8px; padding: 6px 10px; width: fit-content;
+  }
+  .pasos .txt .nota.oro { color: var(--tinta); background: var(--oro-claro); border: 1px solid var(--oro-borde); }
+  .pasos .txt .nota.carmin { color: var(--carmin); background: var(--carmin-claro); }
+
+  /* ---- Novedades (chips de estado) ---- */
+  .novedades { display: flex; flex-direction: column; gap: 10px; }
+  .novedad {
+    display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start;
+    background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--r-sm);
+    padding: 12px 14px;
+  }
+  .chip {
+    font-family: var(--mono); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.04em;
+    padding: 4px 8px; border-radius: 6px; white-space: nowrap; margin-top: 1px;
+  }
+  .chip.aviso-c { background: var(--ambar-claro); color: var(--ambar); }
+  .chip.candado { background: var(--carmin-claro); color: var(--carmin); }
+  .chip.dedup   { background: var(--teal-claro); color: var(--teal-texto); }
+  .chip.sesion  { background: var(--petroleo-claro); color: var(--petroleo); }
+  .chip.bloqueo { background: var(--carmin-claro); color: var(--carmin); }
+  .chip.reporte { background: var(--oro-claro); color: var(--tinta); border: 1px solid var(--oro-borde); }
+  .novedad .desc strong { display: block; font-size: 0.94rem; color: var(--tinta); }
+  .novedad .desc span { font-size: 0.85rem; color: var(--tinta-suave); }
+
+  /* ---- Cierre ---- */
+  .cierre {
+    border-top: 2px solid var(--tinta);
+    padding-top: 20px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .cierre .marco {
+    border: 1.5px solid var(--oro-borde);
+    background: var(--oro-claro);
+    border-radius: var(--r);
+    padding: 16px 18px;
+  }
+  .cierre .marco strong { color: var(--tinta); }
+
+  table.tabla-estados {
+    width: 100%; border-collapse: collapse; font-size: 0.88rem;
+  }
+  table.tabla-estados th, table.tabla-estados td {
+    text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--linea);
+  }
+  table.tabla-estados th { color: var(--tinta-suave); font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; }
+  .pill.recibida { background: var(--ambar-claro); color: var(--ambar); }
+  .pill.proceso { background: var(--petroleo-claro); color: var(--petroleo); }
+  .pill.lista { background: var(--verde-claro); color: var(--verde); }
+  .pill.entregada { background: var(--teal-claro); color: var(--teal-texto); }
+
+  .tabla-wrap { overflow-x: auto; }
+
+  @media (max-width: 520px) {
+    .rol-cabecera { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+</style>
+
+<div class="page">
+
+  <div class="cabecera">
+    <svg width="52" height="52" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagnogen">
+      <circle cx="32" cy="32" r="27.5" fill="none" stroke="var(--teal-borde)" stroke-width="1" opacity="0.55"/>
+      <g transform="rotate(0 32 32)">
+        <path d="M32 32 C 32 20, 40 12, 47 15 C 54 18, 54 30, 44 35 C 38 38, 33 37, 32 32 Z" fill="var(--teal)"/>
+        <path d="M34 30 C 39 24, 45 24, 47 28" fill="none" stroke="var(--blanco)" stroke-width="2.1" stroke-linecap="round"/>
+      </g>
+      <g transform="rotate(120 32 32)">
+        <path d="M32 32 C 32 20, 40 12, 47 15 C 54 18, 54 30, 44 35 C 38 38, 33 37, 32 32 Z" fill="var(--petroleo)"/>
+        <path d="M34 30 C 39 24, 45 24, 47 28" fill="none" stroke="var(--blanco)" stroke-width="2.1" stroke-linecap="round"/>
+      </g>
+      <g transform="rotate(240 32 32)">
+        <path d="M32 32 C 32 20, 40 12, 47 15 C 54 18, 54 30, 44 35 C 38 38, 33 37, 32 32 Z" fill="var(--carmin)"/>
+        <path d="M34 30 C 39 24, 45 24, 47 28" fill="none" stroke="var(--blanco)" stroke-width="2.1" stroke-linecap="round"/>
+      </g>
+      <circle cx="32" cy="32" r="3.1" fill="var(--blanco)"/>
+      <g transform="translate(46 46)">
+        <circle r="9" fill="var(--blanco)"/>
+        <path d="M0 -5 V5 M-5 0 H5" stroke="var(--carmin)" stroke-width="3.2" stroke-linecap="round"/>
+      </g>
+    </svg>
+    <div>
+      <h1>Manual de pruebas — POS Diagnogen</h1>
+      <p class="sub">Recorrido completo por rol · ambiente de ensayo en la nube</p>
+    </div>
+  </div>
+
+  <span class="tira-oro">Ambiente de prueba · no es el sistema en operación</span>
+
+  <nav class="indice">
+    <a href="#acceso">Acceso</a>
+    <a href="#recepcion">Recepción</a>
+    <a href="#tecnico">Químico / Técnico</a>
+    <a href="#gerencia">Gerencia / Doctora</a>
+    <a href="#novedades">Qué cambió</a>
+    <a href="#estados">Estados de orden</a>
+  </nav>
+
+  <section>
+    <h2><span class="eyebrow">Antes de empezar</span>Qué es esto</h2>
+    <p>
+      Esta es una copia de POS Diagnogen corriendo en un servidor de prueba, separado de
+      cualquier operación real. Trae un negocio de ejemplo llamado <strong>"Demo Lab"</strong>
+      con un catálogo de estudios genérico y algunas ventas ya hechas — así hay algo que ver
+      apenas entran. El catálogo de precios real de Diagnogen todavía no está cargado; eso se
+      revisa aparte, cuando la dueña lo confirme.
+    </p>
+    <div class="aviso">
+      <span>⚠</span>
+      <span><strong>Todo lo que hagan aquí es de práctica.</strong> Pueden cobrar, cancelar,
+      capturar resultados y cerrar turnos sin miedo a romper nada — es exactamente para eso.</span>
+    </div>
+  </section>
+
+  <section id="acceso">
+    <h2><span class="eyebrow">Acceso</span>Cómo entrar</h2>
+    <p>Dirección del sistema: <strong>https://heronmolina.github.io/diagnogen-pos/</strong></p>
+    <div class="accesos">
+      <div class="cred gerencia">
+        <span class="rol">★ Gerencia / Dueña</span>
+        <dl>
+          <dt>Correo</dt><dd>dueno@demo-lab.local</dd>
+          <dt>Contraseña</dt><dd>DemoLab123!</dd>
+        </dl>
+      </div>
+      <div class="cred">
+        <span class="rol">Recepción / Caja</span>
+        <dl>
+          <dt>Correo</dt><dd>recepcion@demo-lab.local</dd>
+          <dt>Contraseña</dt><dd>DemoLab123!</dd>
+        </dl>
+      </div>
+    </div>
+    <p style="font-size:0.85rem; color:var(--tinta-suave);">
+      La cuenta de <strong>Gerencia</strong> ve dinero, reportes y configuración; la de
+      <strong>Recepción</strong> ve caja y órdenes, pero no montos de cortes ni reportes.
+    </p>
+  </section>
+
+  <section id="recepcion">
+    <h2><span class="eyebrow">Recorrido paso a paso</span>Recepción — Caja y pacientes</h2>
+    <p>Entren con la cuenta de <strong>Recepción</strong>. Este es el flujo completo de una venta, de principio a fin.</p>
+    <div class="rol-bloque">
+      <div class="rol-cabecera">
+        <h3>Cobrar un estudio</h3>
+        <span class="quien">cuenta "Recepción"</span>
+      </div>
+      <ol class="pasos">
+        <li>
+          <span class="n">1</span>
+          <span class="txt">
+            <strong>Nueva Venta</strong>
+            <span>Desde Inicio, toca "Nueva Venta" en el menú de abajo. Se abre la pantalla de cobro.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">2</span>
+          <span class="txt">
+            <strong>Agregar estudios</strong>
+            <span>Busca por nombre o toca uno de los más pedidos (aparecen primero). Puedes agregar varios — es una orden multi-estudio.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">3</span>
+          <span class="txt">
+            <strong>Buscar o dar de alta al paciente</strong>
+            <span>Escribe el nombre o teléfono. Si ya existe, selecciónalo. Si no, toca "Nuevo paciente".</span>
+            <span class="nota">Aquí es "paciente-primero": la orden se arma junto con la venta, no por separado.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">4</span>
+          <span class="txt">
+            <strong>Nuevo paciente — capturar datos</strong>
+            <span>Nombre y apellidos, teléfono (el +52 ya viene puesto), y opcional: correo con su autorización para contactarlo (NOM-07). No hace falta llenarlo todo para cobrar.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">5</span>
+          <span class="txt">
+            <strong>Paciente repetido — usar el que ya existe</strong>
+            <span>Si el nombre o teléfono ya está registrado, el sistema avisa antes de crear un duplicado y te ofrece usar ese mismo registro.</span>
+            <span class="nota">Pruébalo a propósito: den de alta el mismo paciente dos veces y vean el aviso.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">6</span>
+          <span class="txt">
+            <strong>Médico referente (opcional)</strong>
+            <span>Si un doctor mandó al paciente, se anota aquí — queda ligado a la orden y al resultado final.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">7</span>
+          <span class="txt">
+            <strong>¿Hay comisiones? — comisionista/referidor</strong>
+            <span>Si quien trajo al paciente cobra comisión (una recepcionista de otro consultorio, un promotor), se asigna aquí mismo, al vuelo — si no existe, se da de alta sin salir de la caja.</span>
+            <span class="nota">El sistema calcula la comisión solo; se ve después en Finanzas → Comisiones (gerencia).</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">8</span>
+          <span class="txt">
+            <strong>Precio</strong>
+            <span>El precio del estudio ya viene fijo del catálogo. Cambiarlo a mano ("precio abierto") solo lo puede hacer la cuenta de gerencia — con la de Recepción, ese botón no aparece.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">9</span>
+          <span class="txt">
+            <strong>Cobrar</strong>
+            <span>Elige método de pago (efectivo/tarjeta) y presiona COBRAR. En ese momento se genera el folio y se crea la orden — automático, sin pasos extra.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">10</span>
+          <span class="txt">
+            <strong>Comprobante y comanda</strong>
+            <span>Comparte el comprobante al paciente por WhatsApp, e imprime o comparte la comanda para el área que va a procesar el estudio.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">11</span>
+          <span class="txt">
+            <strong>Seguir la orden en el Tablero</strong>
+            <span>Desde el menú, entra a "Órdenes" y ve cómo se mueve la que acabas de cobrar entre sus estados.</span>
+          </span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="tecnico">
+    <h2><span class="eyebrow">Recorrido paso a paso</span>Químico / Técnico — Resultados</h2>
+    <p>La misma cuenta de <strong>Recepción</strong> sirve para esta parte (en el negocio real, cada quien tiene su propio usuario).</p>
+    <div class="rol-bloque">
+      <div class="rol-cabecera">
+        <h3>Procesar un estudio</h3>
+        <span class="quien">cuenta "Recepción" (o la del técnico)</span>
+      </div>
+      <ol class="pasos">
+        <li>
+          <span class="n">1</span>
+          <span class="txt">
+            <strong>Entrar al Tablero de órdenes</strong>
+            <span>Ahí aparecen todas las órdenes del turno, agrupadas por estado.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">2</span>
+          <span class="txt">
+            <strong>Tomar una orden "Recibida"</strong>
+            <span>Ábrela y muévela a "En proceso" — así el resto del equipo sabe que ya se está trabajando.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">3</span>
+          <span class="txt">
+            <strong>Capturar el resultado</strong>
+            <span>Dentro de la orden, entra al estudio y escribe los valores/hallazgos.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">4</span>
+          <span class="txt">
+            <strong>Generar el PDF con QR</strong>
+            <span>El sistema arma el documento del resultado con un código QR de verificación — ábrelo y confirma que se vea bien.</span>
+            <span class="nota carmin">Falta un paso: gerencia tiene que validarlo antes de poder entregarlo.</span>
+          </span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="gerencia">
+    <h2><span class="eyebrow">Recorrido paso a paso</span>Gerencia / Doctora — Dinero y control</h2>
+    <p>Entren con la cuenta de <strong>Gerencia</strong> — es la única que ve dinero, reportes y configuración.</p>
+    <div class="rol-bloque">
+      <div class="rol-cabecera">
+        <h3>Cerrar el círculo del día</h3>
+        <span class="quien">cuenta "Gerencia"</span>
+      </div>
+      <ol class="pasos">
+        <li>
+          <span class="n">1</span>
+          <span class="txt">
+            <strong>Validar el resultado capturado</strong>
+            <span>Entra a la orden que el técnico dejó lista y apruébala — solo después de esto se puede marcar como entregada.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">2</span>
+          <span class="txt">
+            <strong>Marcar como entregada</strong>
+            <span>Cuando el paciente recoge su resultado, se cierra el ciclo de esa orden.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">3</span>
+          <span class="txt">
+            <strong>Finanzas → cerrar turno</strong>
+            <span>Cierra el corte del día y revisa que el total cuadre contra lo cobrado en caja.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">4</span>
+          <span class="txt">
+            <strong>Finanzas → Comisiones</strong>
+            <span>Revisa cuánto se le debe a cada comisionista/referidor por las ventas del periodo — es el reporte que junta lo que se fue asignando en caja (paso 7 de Recepción).</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">5</span>
+          <span class="txt">
+            <strong>Finanzas → Control de folios</strong>
+            <span>Nuevo: revisa que no falte ningún folio en la secuencia de ventas — es la señal de que alguien cobró y borró el registro.</span>
+            <span class="nota oro">Parte de la propuesta anti-robo que se platicó por separado.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">6</span>
+          <span class="txt">
+            <strong>Probar "precio abierto"</strong>
+            <span>En Caja, al agregar un estudio, intenta cambiar el precio a mano. Con la cuenta de Gerencia sí aparece esa opción; con la de Recepción no — pruébalo con las dos cuentas para ver la diferencia.</span>
+          </span>
+        </li>
+        <li>
+          <span class="n">7</span>
+          <span class="txt">
+            <strong>Catálogo de estudios</strong>
+            <span>Revisa cómo se ven los estudios de ejemplo (nombre, área, precio, alias de búsqueda). El catálogo real de Diagnogen se carga aparte, cuando tú lo confirmes.</span>
+          </span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="novedades">
+    <h2><span class="eyebrow">Qué cambió</span>Novedades recién agregadas</h2>
+    <p>Seis ajustes de control interno se sumaron antes de esta prueba — de aquí sale la propuesta anti-robo que se platicó por separado. Esto es lo que van a notar:</p>
+    <div class="novedades">
+      <div class="novedad">
+        <span class="chip aviso-c">AVISO</span>
+        <div class="desc"><strong>Aviso de turno sin abrir</strong><span>Si intentan cobrar sin haber abierto el corte del turno, la caja se los recuerda con un banner.</span></div>
+      </div>
+      <div class="novedad">
+        <span class="chip sesion">SESIÓN</span>
+        <div class="desc"><strong>Sesión vencida = vuelve al login</strong><span>Si el sistema los saca por inactividad, ven un aviso claro en vez de una pantalla rota.</span></div>
+      </div>
+      <div class="novedad">
+        <span class="chip candado">CANDADO</span>
+        <div class="desc"><strong>"Precio abierto" solo para gerencia</strong><span>Cambiar el precio de un estudio al vuelo ya no lo puede hacer cualquier cajera — solo la cuenta de gerencia.</span></div>
+      </div>
+      <div class="novedad">
+        <span class="chip dedup">DUPLICADOS</span>
+        <div class="desc"><strong>Aviso de paciente repetido</strong><span>Si el nombre/teléfono ya existe, ofrece usar ese registro en vez de crear uno nuevo.</span></div>
+      </div>
+      <div class="novedad">
+        <span class="chip bloqueo">BLOQUEO</span>
+        <div class="desc"><strong>No se cancela una orden ya entregada</strong><span>Si los resultados ya están listos o entregados, cancelar la venta desde caja queda bloqueado — hay que contactar a la dueña.</span></div>
+      </div>
+      <div class="novedad">
+        <span class="chip reporte">REPORTE</span>
+        <div class="desc"><strong>Control de folios (gerencia)</strong><span>Detecta huecos en la numeración de ventas — la señal de que alguien cobró y borró el registro.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="estados">
+    <h2><span class="eyebrow">Referencia</span>Estados de una orden</h2>
+    <div class="tabla-wrap">
+      <table class="tabla-estados">
+        <thead><tr><th>Estado</th><th>Qué significa</th><th>Quién lo mueve</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill recibida">Recibida</span></td><td>Se cobró, está en espera de procesarse.</td><td>Automático al cobrar</td></tr>
+          <tr><td><span class="pill proceso">En proceso</span></td><td>El técnico ya está trabajando el estudio.</td><td>Químico/Técnico</td></tr>
+          <tr><td><span class="pill lista">Resultados listos</span></td><td>Capturados y validados por gerencia/doctora.</td><td>Técnico captura → Gerencia valida</td></tr>
+          <tr><td><span class="pill entregada">Entregada</span></td><td>El paciente ya se llevó su resultado.</td><td>Gerencia / Recepción</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="cierre">
+    <div class="marco">
+      <strong>¿Encontraron algo raro o que no cuadra?</strong>
+      <p style="margin-top:6px;">Anótenlo con la pantalla donde pasó y qué esperaban que hiciera, y mándenlo directo — así se corrige antes de tocar datos reales.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
