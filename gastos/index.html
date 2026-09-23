@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual de gastos — POS Diagnogen</title>
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --papel: #F4EFE6; --blanco: #FDFBF7; --tinta: #2B2723; --tinta2: #5A5348;
+    --teal: #17A2AC; --petroleo: #17607F; --carmin: #BE3A5B; --oro: #C9A44C;
+    --linea: #E3DACA; --verde: #2E7D5B;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--papel); color: var(--tinta);
+    font: 17px/1.6 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .hoja { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+  header.portada { text-align: center; padding: 26px 0 10px; }
+  header.portada img.cover { width: 100%; max-width: 760px; border-radius: 18px; border: 1px solid var(--linea); }
+  h1 { font-family: Georgia, 'Times New Roman', serif; font-weight: 500; font-size: 2.1rem; color: var(--petroleo); margin: 18px 0 4px; }
+  .sub { color: var(--tinta2); font-size: 1rem; margin: 0 0 8px; }
+  h2 { font-family: Georgia, serif; font-weight: 500; font-size: 1.5rem; color: var(--petroleo);
+    border-bottom: 3px solid var(--oro); padding-bottom: 6px; margin: 46px 0 6px; }
+  h3 { font-size: 1.12rem; margin: 28px 0 6px; color: var(--tinta); }
+  .parte { display: inline-block; background: var(--carmin); color: #fff; font-weight: 800;
+    font-size: .78rem; letter-spacing: .08em; padding: 4px 12px; border-radius: 999px; margin-top: 40px; }
+  .parte.dos { background: var(--petroleo); }
+  .tarjeta { background: var(--blanco); border: 1px solid var(--linea); border-radius: 16px;
+    padding: 18px 20px; margin: 14px 0; box-shadow: 0 3px 10px rgba(23,53,64,.06); }
+  .paso { display: flex; gap: 12px; align-items: flex-start; margin: 10px 0; }
+  .n { flex: 0 0 34px; width: 34px; height: 34px; background: var(--carmin); color: #fff;
+    font-weight: 800; font-size: 1.05rem; border-radius: 999px; display: flex; align-items: center; justify-content: center; }
+  .paso p { margin: 4px 0 0; }
+  figure { margin: 16px 0; text-align: center; }
+  figure img { max-width: 100%; border-radius: 14px; border: 1px solid var(--linea); box-shadow: 0 4px 14px rgba(23,53,64,.10); }
+  figcaption { font-size: .82rem; color: var(--tinta2); margin-top: 6px; }
+  .ojo { background: #FDF3E4; border: 1.5px dashed var(--oro); border-radius: 12px; padding: 10px 14px; font-size: .92rem; margin: 12px 0; }
+  .ojo strong { color: #8a6d1f; }
+  .alerta { background: #FBEAEE; border: 1.5px dashed var(--carmin); border-radius: 12px; padding: 10px 14px; font-size: .92rem; margin: 12px 0; }
+  .bien { background: #E9F5EF; border: 1.5px dashed var(--verde); border-radius: 12px; padding: 10px 14px; font-size: .92rem; margin: 12px 0; }
+  nav.indice { background: var(--blanco); border: 2px solid var(--oro); border-radius: 16px; padding: 18px 22px; margin: 22px 0; }
+  nav.indice h2 { border: 0; margin: 0 0 8px; font-size: 1.2rem; }
+  nav.indice ol { margin: 6px 0; padding-left: 22px; }
+  nav.indice a { color: var(--petroleo); text-decoration: none; font-weight: 650; }
+  nav.indice a:hover { text-decoration: underline; }
+  nav.indice .mini { font-size: .82rem; color: var(--tinta2); font-weight: 400; }
+  table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--linea); vertical-align: top; }
+  th { color: var(--petroleo); }
+  td.cat { font-weight: 700; white-space: nowrap; }
+  .pie { text-align: center; color: var(--tinta2); font-size: .8rem; margin-top: 50px; }
+  .formula { background: var(--papel); border-left: 4px solid var(--oro); padding: 10px 14px; margin: 12px 0;
+    font-family: ui-monospace, monospace; font-size: .92rem; border-radius: 0 10px 10px 0; }
+  @media print {
+    body { background: #fff; font-size: 13px; }
+    .tarjeta, figure img { box-shadow: none; }
+    h2 { page-break-before: always; }
+    nav.indice h2 { page-break-before: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="hoja">
+
+<header class="portada">
+  <img class="cover" src="img/portada.png" alt="">
+  <h1>Manual de gastos · Diagnogen POS</h1>
+  <p class="sub">Todo lo que sale de la caja: nómina, renta, maquila, insumos, comisiones y los gastitos del día. Con pantallas reales y el punto exacto dónde picar 🔴</p>
+</header>
+
+<nav class="indice">
+  <h2>Índice</h2>
+  <p style="margin:4px 0"><strong style="color:var(--carmin)">PARTE 1 · LO INDISPENSABLE</strong> <span class="mini">(con esto ya registras cualquier gasto)</span></p>
+  <ol>
+    <li><a href="#regla">La regla de oro: todo lo que sale, se registra</a></li>
+    <li><a href="#registrar">Registrar un gasto (30 segundos)</a></li>
+    <li><a href="#categorias">Las 8 categorías: cuál escoger</a></li>
+    <li><a href="#dia">La rutina del día y el corte</a></li>
+  </ol>
+  <p style="margin:12px 0 4px"><strong style="color:var(--petroleo)">PARTE 2 · A FONDO</strong> <span class="mini">(para la dueña / dirección)</span></p>
+  <ol start="5">
+    <li><a href="#nomina">Nómina: cómo registrarla bien</a></li>
+    <li><a href="#maquila">Maquila y laboratorios externos</a></li>
+    <li><a href="#comisiones">Comisiones: no se capturan a mano</a></li>
+    <li><a href="#insumos">Insumos y el conteo del estante</a></li>
+    <li><a href="#utilidad">El reporte de utilidad real</a></li>
+    <li><a href="#bitacora">Bitácora y control de folios</a></li>
+    <li><a href="#mes">Cierre de mes: la rutina de 15 minutos</a></li>
+    <li><a href="#errores">Errores que descuadran el mes</a></li>
+    <li><a href="#faq">¿Qué hago si…?</a></li>
+  </ol>
+</nav>
+
+<span class="parte">PARTE 1 · LO INDISPENSABLE</span>
+
+<h2 id="regla">1 · La regla de oro</h2>
+<div class="tarjeta">
+  <p style="font-size:1.05rem"><strong>Todo peso que sale de la caja se registra en el momento, con su categoría.</strong></p>
+  <p style="margin-top:10px">No importa si son $30 de garrafón o $18,000 de nómina: si sale dinero, se captura. Esa es la única forma de que a fin de mes la utilidad sea la de verdad y no un aproximado.</p>
+  <div class="alerta"><strong>Por qué importa:</strong> antes los gastos se anotaban en una libreta con texto libre — nómina, agujas, maquila y comisiones revueltas. Por eso la "utilidad" salía distinta cada vez que se calculaba. Con categorías fijas, el reporte del mes tiene <strong>siempre las mismas columnas</strong> y se puede comparar mes contra mes.</p>
+  <div class="bien"><strong>Regla práctica:</strong> si dudas de la categoría, escoge la más cercana y guarda. Un gasto en la categoría equivocada se puede analizar; un gasto <em>no capturado</em> está perdido para siempre.</div>
+</div>
+
+<h2 id="registrar">2 · Registrar un gasto (30 segundos)</h2>
+<div class="tarjeta">
+  <p>Abajo, en la pestaña <strong>Finanzas</strong>, busca el bloque <strong>REGISTRAR EGRESO</strong>:</p>
+  <div class="paso"><div class="n">1</div><p>Elige la <strong>categoría</strong> de la lista (las 8 están explicadas en el punto 3).</p></div>
+  <div class="paso"><div class="n">2</div><p>Escribe el <strong>monto</strong>. Solo números — sin el signo de pesos.</p></div>
+  <div class="paso"><div class="n">3</div><p>Toca <strong>Guardar</strong>. Listo, el gasto ya está en el sistema y en el corte.</p></div>
+  <figure><img src="img/01-registrar-egreso.png" alt="Registrar egreso en Finanzas"><figcaption>Finanzas → Registrar egreso. Tres toques y ya.</figcaption></figure>
+  <div class="ojo"><strong>Tip del mostrador:</strong> captura el gasto <em>cuando pagas</em>, no al final del día. Lo que se deja "para después" es justo lo que no cuadra en el corte.</div>
+</div>
+
+<h2 id="categorias">3 · Las 8 categorías: cuál escoger</h2>
+<div class="tarjeta">
+  <table>
+    <tr><th>Categoría</th><th>Qué va aquí</th><th>Ejemplos reales</th></tr>
+    <tr><td class="cat">Nómina</td><td>Sueldos y honorarios del personal</td><td>Quincena de la recepcionista, pago al químico, honorarios de la doctora</td></tr>
+    <tr><td class="cat">Renta</td><td>Renta del local</td><td>Renta mensual del consultorio</td></tr>
+    <tr><td class="cat">Insumos</td><td>Material de trabajo que se consume</td><td>Agujas, tubos, reactivos, cassettes, guantes, papelería clínica, gel de ultrasonido</td></tr>
+    <tr><td class="cat">Maquila</td><td>Estudios que manda a otro laboratorio</td><td>Pago a Monzón, Precisso, Gleculab por estudios subrogados</td></tr>
+    <tr><td class="cat">Comisiones</td><td>Pago a quien refirió pacientes</td><td>Comisión al médico o promotor que mandó al paciente</td></tr>
+    <tr><td class="cat">Servicios</td><td>Lo que mantiene el local funcionando</td><td>Luz, agua, internet, teléfono, mantenimiento del equipo, limpieza</td></tr>
+    <tr><td class="cat">Devoluciones</td><td>Dinero que se le regresa a un paciente</td><td>Reembolso por estudio cancelado o cobrado de más</td></tr>
+    <tr><td class="cat">Otros</td><td>Los "gastitos" que no caben arriba</td><td>Garrafón, café, taxi para llevar muestras, propina de mensajería, papelería de oficina</td></tr>
+  </table>
+  <div class="ojo"><strong>La categoría "Otros" es válida, no es trampa.</strong> Está para que ningún gasto se quede sin registrar. Ahora bien: si a fin de mes "Otros" es de las más grandes, vale la pena revisar qué se está metiendo ahí — normalmente son insumos o servicios mal clasificados.</div>
+</div>
+
+<h2 id="dia">4 · La rutina del día y el corte</h2>
+<div class="tarjeta">
+  <div class="paso"><div class="n">1</div><p><strong>Al abrir</strong>: en Finanzas, toca <strong>Abrir corte</strong> (matutino o vespertino, según el turno).</p></div>
+  <div class="paso"><div class="n">2</div><p><strong>Durante el día</strong>: cada gasto que salga, se registra en el momento.</p></div>
+  <div class="paso"><div class="n">3</div><p><strong>Al cerrar</strong>: toca <strong>Cerrar corte</strong>. El sistema cuadra lo cobrado por método de pago menos los gastos del turno y te da el saldo.</p></div>
+  <figure><img src="img/02-corte.png" alt="Corte de caja"><figcaption>El corte por turno vive arriba del registro de egresos.</figcaption></figure>
+  <div class="alerta"><strong>Si sale "Sin corte abierto":</strong> las ventas se registran igual, no se pierde nada — pero avísale a dirección para abrir el corte, porque si no, ese turno no cuadra al cierre.</div>
+</div>
+
+<span class="parte dos">PARTE 2 · A FONDO</span>
+
+<h2 id="nomina">5 · Nómina: cómo registrarla bien</h2>
+<div class="tarjeta">
+  <p>La nómina es normalmente el gasto más grande del mes, así que vale la pena capturarla con orden:</p>
+  <div class="paso"><div class="n">1</div><p><strong>Un registro por pago, el día que se paga.</strong> Si pagas quincenas, son dos registros al mes; si pagas semanal, cuatro o cinco.</p></div>
+  <div class="paso"><div class="n">2</div><p><strong>Categoría siempre "Nómina"</strong> — también para los honorarios de la doctora o de quien factura por servicios profesionales.</p></div>
+  <div class="paso"><div class="n">3</div><p><strong>Un registro por persona</strong> si quieres poder revisar después cuánto se llevó cada quien; o uno global por quincena si prefieres rapidez. Lo importante es ser consistente todo el año.</p></div>
+  <div class="ojo"><strong>Ojo con lo que NO es nómina:</strong> la comisión al médico que refiere va en <em>Comisiones</em>; el pago al laboratorio externo va en <em>Maquila</em>. Meterlos en Nómina infla el costo de personal y distorsiona el análisis.</div>
+</div>
+
+<h2 id="maquila">6 · Maquila y laboratorios externos</h2>
+<div class="tarjeta">
+  <p>Cuando mandas un estudio a otro laboratorio (Monzón, Precisso, Gleculab…), tú cobras al paciente el precio completo y luego le pagas al laboratorio su parte. Ese pago va en <strong>Maquila</strong>.</p>
+  <p style="margin-top:10px">Registrarlo aparte permite ver lo importante: <strong>cuánto te queda realmente</strong> de los estudios que no haces tú. Si un estudio se cobra en $400 y la maquila cuesta $260, tu margen real es $140 — y eso solo se ve si la maquila está en su propia categoría.</p>
+  <div class="bien"><strong>Recomendación:</strong> registra la maquila cuando pagas la factura del laboratorio (normalmente mensual o quincenal), no estudio por estudio. Un solo registro con el total del periodo es suficiente y mucho más rápido.</div>
+</div>
+
+<h2 id="comisiones">7 · Comisiones: no se capturan a mano</h2>
+<div class="tarjeta">
+  <p>Las comisiones tienen su propio módulo, porque se asignan <strong>en el momento de la venta</strong> (en la caja, con el interruptor "¿Hay pago de comisión?"), y así el sistema sabe exactamente qué venta generó qué comisión.</p>
+  <figure><img src="img/05-comisiones.png" alt="Reporte de comisiones"><figcaption>Inicio → Comisiones: quién generó cuánto y qué falta pagar.</figcaption></figure>
+  <div class="paso"><div class="n">1</div><p>En la caja, al cobrar, se elige al comisionista y su monto (se precarga el que tiene configurado, pero se puede cambiar para esa venta).</p></div>
+  <div class="paso"><div class="n">2</div><p>En <strong>Inicio → Comisiones</strong> ves el acumulado por persona y el periodo.</p></div>
+  <div class="paso"><div class="n">3</div><p><strong>Cuando le pagas</strong> al comisionista, ahí sí registras el egreso en la categoría <strong>Comisiones</strong> por el monto entregado.</p></div>
+  <div class="alerta"><strong>No dupliques:</strong> la comisión asignada en la venta es un <em>compromiso</em>; el egreso es el <em>pago</em>. Registra el egreso solo cuando el dinero sale de verdad.</div>
+</div>
+
+<h2 id="insumos">8 · Insumos y el conteo del estante</h2>
+<div class="tarjeta">
+  <p>Los insumos tienen doble vida: son un <strong>gasto</strong> (cuando los compras) y son un <strong>control anti-fugas</strong> (cuando los cuentas).</p>
+  <div class="paso"><div class="n">1</div><p><strong>Al comprar</strong>: registras el egreso en la categoría <em>Insumos</em>.</p></div>
+  <div class="paso"><div class="n">2</div><p><strong>Al contar</strong>: en <strong>Inicio → Insumos y conteo</strong> capturas cuántas piezas hay en el estante. El sistema descuenta una pieza por cada venta registrada, así que te dice si <strong>faltan</strong>.</p></div>
+  <figure><img src="img/06-insumos.png" alt="Insumos y conteo"><figcaption>Si faltan piezas y no hay ventas que las expliquen, son pruebas cobradas y no registradas.</figcaption></figure>
+  <div class="ojo"><strong>Para qué sirve de verdad:</strong> una prueba rápida que se cobra y NO se registra no aparece en el corte (el efectivo nunca entró a la caja), pero sí se comió un cassette. El faltante del estante es la única huella que deja. Por eso el conteo se hace <strong>seguido</strong>, no una vez al año.</div>
+</div>
+
+<h2 id="utilidad">9 · El reporte de utilidad real</h2>
+<div class="tarjeta">
+  <p>En <strong>Inicio → Reportes</strong> está el reporte del mes con las mismas columnas siempre:</p>
+  <div class="formula">Utilidad real = Ingresos cobrados − Gastos registrados</div>
+  <figure><img src="img/04-reportes.png" alt="Reportes"><figcaption>El desglose por categoría es lo que hace comparable un mes con otro.</figcaption></figure>
+  <p>Ahí ves el total de egresos y su desglose por cada una de las 8 categorías, y puedes descargarlo a Excel para el contador.</p>
+  <div class="alerta"><strong>Este número solo es cierto si capturaste todo.</strong> Un mes con gastos sin registrar se ve más rentable de lo que fue, y es la trampa más cara: se toman decisiones (contratar, comprar equipo, bajar precios) con una utilidad que no existe.</div>
+</div>
+
+<h2 id="bitacora">10 · Bitácora y control de folios</h2>
+<div class="tarjeta">
+  <p>Dos controles que viven en Finanzas y sirven para revisar que nada se escape:</p>
+  <h3>Bitácora de cobros</h3>
+  <p>Cada transacción con su <strong>hora exacta</strong>, quién la cobró y por qué método. Incluye las canceladas (con quién y a qué hora las canceló) y las de práctica, marcadas. Se descarga a Excel.</p>
+  <figure><img src="img/03-bitacora.png" alt="Bitácora de cobros"><figcaption>Si un cobro no aparece aquí, no existió para el sistema.</figcaption></figure>
+  <h3>Control de folios</h3>
+  <p>Cada venta lleva un folio consecutivo (A-1, A-2, A-3…). Si falta un número en la secuencia, el sistema lo marca en rojo: significa que una venta se registró y luego se borró fuera del flujo normal. En verde, tranquilidad.</p>
+</div>
+
+<h2 id="mes">11 · Cierre de mes: la rutina de 15 minutos</h2>
+<div class="tarjeta">
+  <div class="paso"><div class="n">1</div><p><strong>Revisa la bitácora</strong> del mes completo y descárgala.</p></div>
+  <div class="paso"><div class="n">2</div><p><strong>Checa el control de folios</strong>: que esté en verde.</p></div>
+  <div class="paso"><div class="n">3</div><p><strong>Captura lo que falte</strong>: renta, servicios, maquila del mes, comisiones pagadas.</p></div>
+  <div class="paso"><div class="n">4</div><p><strong>Haz el conteo de insumos</strong> y aclara faltantes.</p></div>
+  <div class="paso"><div class="n">5</div><p><strong>Abre el reporte de utilidad</strong>, descárgalo a Excel y mándaselo al contador.</p></div>
+  <div class="paso"><div class="n">6</div><p><strong>Compara contra el mes pasado</strong>: ¿qué categoría creció? Ahí está la conversación del mes.</p></div>
+</div>
+
+<h2 id="errores">12 · Errores que descuadran el mes</h2>
+<div class="tarjeta">
+  <table>
+    <tr><th>Error</th><th>Qué provoca</th><th>Cómo evitarlo</th></tr>
+    <tr><td>Anotar gastos en la libreta y capturarlos "luego"</td><td>Se olvidan; el mes sale más rentable de lo real</td><td>Capturar al momento de pagar</td></tr>
+    <tr><td>Meter todo en "Otros"</td><td>El reporte no dice nada útil</td><td>Escoger la categoría real; "Otros" solo para lo que de verdad no encaja</td></tr>
+    <tr><td>Registrar la comisión dos veces (en la venta y como egreso el mismo día)</td><td>Los gastos se inflan</td><td>El egreso se captura solo cuando le pagas al comisionista</td></tr>
+    <tr><td>Meter la maquila en Insumos</td><td>Se pierde de vista el margen real de los estudios subrogados</td><td>Maquila = laboratorio externo; Insumos = material que se consume</td></tr>
+    <tr><td>Cerrar el turno sin capturar los gastos del turno</td><td>El corte no cuadra con el efectivo del cajón</td><td>Capturar antes de cerrar corte</td></tr>
+    <tr><td>Pagar de la caja chica y no registrarlo</td><td>Falta efectivo sin explicación</td><td>La caja chica también es dinero del negocio: se registra</td></tr>
+  </table>
+</div>
+
+<h2 id="faq">13 · ¿Qué hago si…?</h2>
+<div class="tarjeta">
+  <table>
+    <tr><th>Situación</th><th>Qué hacer</th></tr>
+    <tr><td>Me equivoqué de categoría</td><td>Registra el gasto correcto y avísale a dirección para que lo tome en cuenta al revisar el mes. Los gastos no se borran: queda el rastro.</td></tr>
+    <tr><td>Puse un monto equivocado</td><td>Avisa a dirección de inmediato — mientras más rápido, más fácil de aclarar contra el corte del día.</td></tr>
+    <tr><td>Pagué un gasto con mi dinero</td><td>Regístralo igual (es gasto del negocio) y anota aparte que se te debe reponer.</td></tr>
+    <tr><td>Es un gasto de dos categorías (ej. una compra con insumos y papelería)</td><td>Si la mayor parte es de una, ponla completa ahí. Si son montos parecidos, captura dos egresos separados.</td></tr>
+    <tr><td>Compré algo grande (un equipo)</td><td>Regístralo en <em>Otros</em> y coméntalo con el contador: una inversión en equipo se trata distinto a un gasto del mes.</td></tr>
+    <tr><td>Le devolví dinero a un paciente</td><td>Categoría <em>Devoluciones</em>, por el monto devuelto.</td></tr>
+    <tr><td>No sé si ya lo capturé</td><td>Revisa el corte del día o la bitácora. Es mejor verificar que registrar doble.</td></tr>
+  </table>
+</div>
+
+<p class="pie">Diagnogen POS · Manual de gastos · Las pantallas son de la app real (datos de demostración).<br>
+¿Buscabas el manual de uso general? Está en <a href="../manual/">manual de uso</a>.</p>
+
+</div>
+</body>
+</html>

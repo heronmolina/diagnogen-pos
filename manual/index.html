@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual de uso — POS Diagnogen</title>
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --papel: #F4EFE6; --blanco: #FDFBF7; --tinta: #2B2723; --tinta2: #5A5348;
+    --teal: #17A2AC; --petroleo: #17607F; --carmin: #BE3A5B; --oro: #C9A44C;
+    --linea: #E3DACA;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--papel); color: var(--tinta);
+    font: 17px/1.6 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .hoja { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+  header.portada { text-align: center; padding: 26px 0 10px; }
+  header.portada img.cover { width: 100%; max-width: 760px; border-radius: 18px; border: 1px solid var(--linea); }
+  h1 { font-family: Georgia, 'Times New Roman', serif; font-weight: 500; font-size: 2.1rem; color: var(--petroleo); margin: 18px 0 4px; }
+  .sub { color: var(--tinta2); font-size: 1rem; margin: 0 0 8px; }
+  h2 { font-family: Georgia, serif; font-weight: 500; font-size: 1.5rem; color: var(--petroleo);
+    border-bottom: 3px solid var(--oro); padding-bottom: 6px; margin: 46px 0 6px; }
+  h3 { font-size: 1.12rem; margin: 30px 0 6px; color: var(--tinta); }
+  .parte { display: inline-block; background: var(--carmin); color: #fff; font-weight: 800;
+    font-size: .78rem; letter-spacing: .08em; padding: 4px 12px; border-radius: 999px; margin-top: 40px; }
+  .parte.dos { background: var(--petroleo); }
+  .tarjeta { background: var(--blanco); border: 1px solid var(--linea); border-radius: 16px;
+    padding: 18px 20px; margin: 14px 0; box-shadow: 0 3px 10px rgba(23,53,64,.06); }
+  .paso { display: flex; gap: 12px; align-items: flex-start; margin: 10px 0; }
+  .n { flex: 0 0 34px; width: 34px; height: 34px; background: var(--carmin); color: #fff;
+    font-weight: 800; font-size: 1.05rem; border-radius: 999px; display: flex; align-items: center; justify-content: center; }
+  .paso p { margin: 4px 0 0; }
+  figure { margin: 16px 0; text-align: center; }
+  figure img { max-width: 100%; border-radius: 14px; border: 1px solid var(--linea); box-shadow: 0 4px 14px rgba(23,53,64,.10); }
+  figure.movil img { max-width: 340px; }
+  figcaption { font-size: .82rem; color: var(--tinta2); margin-top: 6px; }
+  .ojo { background: #FDF3E4; border: 1.5px dashed var(--oro); border-radius: 12px; padding: 10px 14px; font-size: .92rem; margin: 12px 0; }
+  .ojo strong { color: #8a6d1f; }
+  .alerta { background: #FBEAEE; border: 1.5px dashed var(--carmin); border-radius: 12px; padding: 10px 14px; font-size: .92rem; margin: 12px 0; }
+  nav.indice { background: var(--blanco); border: 2px solid var(--oro); border-radius: 16px; padding: 18px 22px; margin: 22px 0; }
+  nav.indice h2 { border: 0; margin: 0 0 8px; font-size: 1.2rem; }
+  nav.indice ol { margin: 6px 0; padding-left: 22px; }
+  nav.indice a { color: var(--petroleo); text-decoration: none; font-weight: 650; }
+  nav.indice a:hover { text-decoration: underline; }
+  nav.indice .mini { font-size: .82rem; color: var(--tinta2); font-weight: 400; }
+  table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--linea); vertical-align: top; }
+  th { color: var(--petroleo); }
+  .pie { text-align: center; color: var(--tinta2); font-size: .8rem; margin-top: 50px; }
+  @media print {
+    body { background: #fff; font-size: 13px; }
+    .tarjeta, figure img { box-shadow: none; }
+    h2 { page-break-before: always; }
+    nav.indice h2, h2#indispensable-titulo { page-break-before: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="hoja">
+
+<header class="portada">
+  <img class="cover" src="img/portada.png" alt="">
+  <h1>Manual de uso · Diagnogen POS</h1>
+  <p class="sub">Súper fácil, paso por paso, con pantallas reales de la app y el punto exacto dónde picar 🔴</p>
+</header>
+
+<nav class="indice">
+  <h2>Índice</h2>
+  <p style="margin:4px 0"><strong style="color:var(--carmin)">PARTE 1 · LO INDISPENSABLE</strong> <span class="mini">(con esto ya trabajas el día 1)</span></p>
+  <ol>
+    <li><a href="#entrar">Entrar a la app</a></li>
+    <li><a href="#cobrar">Cobrar una orden (el pan de cada día)</a></li>
+    <li><a href="#ticket">Entregar el ticket y avisar por WhatsApp</a></li>
+    <li><a href="#tablero">El tablero: seguir cada orden</a></li>
+    <li><a href="#resultados">Subir el estudio y entregarlo al paciente</a></li>
+  </ol>
+  <p style="margin:12px 0 4px"><strong style="color:var(--petroleo)">PARTE 2 · A FONDO</strong> <span class="mini">(cuando ya dominas lo básico)</span></p>
+  <ol start="6">
+    <li><a href="#cotizar">Cotizar sin cobrar</a></li>
+    <li><a href="#subsecuente">Paciente subsecuente (precio especial)</a></li>
+    <li><a href="#catalogo">El catálogo de estudios</a></li>
+    <li><a href="#equipo">Equipo y accesos (quién puede qué)</a></li>
+    <li><a href="#panel">Promos, lealtad y WhatsApp de áreas</a></li>
+    <li><a href="#respaldo">Espacio y respaldo de estudios</a></li>
+    <li><a href="#finanzas">Finanzas y corte</a></li>
+    <li><a href="#practica">Modo práctica (para aprender sin miedo)</a></li>
+    <li><a href="#faq">¿Qué hago si…? (dudas comunes)</a></li>
+  </ol>
+</nav>
+
+<span class="parte">PARTE 1 · LO INDISPENSABLE</span>
+
+<h2 id="entrar" >1 · Entrar a la app</h2>
+<div class="tarjeta">
+  <div class="paso"><div class="n">1</div><p>Escribe tu <strong>correo</strong> (el que te dio dirección).</p></div>
+  <div class="paso"><div class="n">2</div><p>Escribe tu <strong>contraseña</strong>.</p></div>
+  <div class="paso"><div class="n">3</div><p>Toca <strong>Entrar</strong>. Listo — la app te lleva al inicio.</p></div>
+  <figure class="movil"><img src="img/01-entrar.png" alt="Pantalla de entrada"><figcaption>Los círculos rojos marcan dónde picar, en orden.</figcaption></figure>
+  <div class="ojo"><strong>Tip:</strong> en el celular puedes "instalar" la app: en el navegador toca Compartir → <em>Agregar a pantalla de inicio</em>. Queda como una app normal.</div>
+</div>
+
+<h2 id="cobrar">2 · Cobrar una orden (el pan de cada día)</h2>
+<div class="tarjeta">
+  <p>Desde el inicio, toca <strong>Nueva Venta</strong>:</p>
+  <figure class="movil"><img src="img/02-inicio.png" alt="Inicio con Nueva Venta marcada"></figure>
+
+  <h3>Paso A · El paciente</h3>
+  <div class="paso"><div class="n">1</div><p><strong>Búscalo</strong> por nombre, apellidos o teléfono. Si ya vino antes, aparece — tócalo y ya.</p></div>
+  <div class="paso"><div class="n">2</div><p>Si es nuevo, toca <strong>+ Nuevo paciente</strong>.</p></div>
+  <figure class="movil"><img src="img/03-caja-paciente.png" alt="Buscador de paciente"></figure>
+  <p>En el alta solo son obligatorios: <strong>nombre, apellidos, fecha de nacimiento y sexo</strong>. El teléfono es opcional, pero <em>ponlo</em>: con él se le manda el resultado por WhatsApp.</p>
+  <figure class="movil"><img src="img/04-caja-nuevo-paciente.png" alt="Alta de paciente"></figure>
+  <div class="ojo"><strong>La app te cuida:</strong> si el nombre o teléfono se parece a alguien ya registrado, te avisa "¿Será el mismo?" con un botón para usarlo — así no se duplican pacientes.</div>
+
+  <h3>Paso B · El médico que lo manda</h3>
+  <div class="paso"><div class="n">1</div><p>Escribe el nombre del médico solicitante — o <strong>"Particular"</strong> si viene por su cuenta. Sin esto no se puede cobrar.</p></div>
+  <figure class="movil"><img src="img/05-caja-medico.png" alt="Campo de médico solicitante"></figure>
+
+  <h3>Paso C · Los estudios</h3>
+  <div class="paso"><div class="n">1</div><p>Filtra por área (Laboratorio, Ultrasonido, Rayos X…) o busca por nombre.</p></div>
+  <div class="paso"><div class="n">2</div><p><strong>Toca el estudio</strong> y se agrega. Tócalo otra vez para sumar cantidad.</p></div>
+  <figure class="movil"><img src="img/06-caja-estudios.png" alt="Elegir estudios"></figure>
+
+  <h3>Paso D · Cobrar</h3>
+  <div class="paso"><div class="n">1</div><p>Revisa el total, elige el método de pago y toca <strong>COBRAR</strong>. La orden queda registrada con su folio (A-1, A-2…).</p></div>
+  <figure class="movil"><img src="img/07-caja-cobrar.png" alt="Botón COBRAR"></figure>
+</div>
+
+<h2 id="ticket">3 · Entregar el ticket y avisar por WhatsApp</h2>
+<div class="tarjeta">
+  <p>Al cobrar sale el recibo con todo lo que puedes hacer en un toque:</p>
+  <div class="paso"><div class="n">1</div><p><strong>Enviar comprobante por WhatsApp</strong> — el ticket bonito en PDF, directo al chat del paciente.</p></div>
+  <div class="paso"><div class="n">2</div><p><strong>Enviar nota al paciente</strong> — sus estudios y cuándo se entregan.</p></div>
+  <div class="paso"><div class="n">3</div><p><strong>Otra venta</strong> — y a seguir con la fila.</p></div>
+  <figure class="movil"><img src="img/08-recibo.png" alt="Recibo con botones de WhatsApp"></figure>
+  <div class="ojo"><strong>La comanda va sola:</strong> si dirección activó el envío automático, al cobrar le llega la comanda por WhatsApp a cada área (laboratorio, rayos X, ultrasonido). Si no, ahí mismo hay botones para mandarla en un toque.</div>
+</div>
+
+<h2 id="tablero">4 · El tablero: seguir cada orden</h2>
+<div class="tarjeta">
+  <p>Inicio → <strong>Tablero de órdenes</strong>. Cada orden es una tarjeta que avanza por columnas: <strong>Recibidas → En proceso → Resultados listos → Entregadas</strong>.</p>
+  <div class="paso"><div class="n">1</div><p>Cuando el área empieza a trabajar un estudio, toca <strong>Comenzar ›</strong>. Cuando termina y sube el estudio, toca <strong>Listo ›</strong>.</p></div>
+  <div class="paso"><div class="n">2</div><p><strong>Detalle ›</strong> abre todo lo demás: la comanda, subir el estudio, capturar resultados.</p></div>
+  <figure><img src="img/09-tablero.png" alt="Tablero de órdenes"><figcaption>La orden avanza sola de columna: el estudio más atrasado manda.</figcaption></figure>
+  <div class="ojo"><strong>No te preocupes por moverla "bien":</strong> la etapa de la orden se calcula sola con lo que cada área marca. Y si algo se entregó por error, hay botón para <em>Regresar</em>.</div>
+</div>
+
+<h2 id="resultados">5 · Subir el estudio y entregarlo al paciente</h2>
+<div class="tarjeta">
+  <p>En el tablero, toca <strong>Detalle ›</strong> de la orden:</p>
+  <div class="paso"><div class="n">1</div><p>Toca <strong>Subir estudio / capturar resultados</strong>.</p></div>
+  <figure><img src="img/10-detalle-orden.png" alt="Detalle de la orden"></figure>
+  <p>Por cada estudio de la orden puedes:</p>
+  <div class="paso"><div class="n">1</div><p><strong>Subir el archivo</strong> tal cual se entrega (PDF, Word, Excel o foto) — o pegar el <strong>enlace</strong> si el estudio se ve en un visor (típico de rayos X).</p></div>
+  <div class="paso"><div class="n">2</div><p>La doctora encargada toca <strong>Validar</strong> (firma el resultado). Sin estudio subido, la app no deja marcar "Listo".</p></div>
+  <figure><img src="img/11-captura-resultados.png" alt="Subir estudio y validar"></figure>
+  <p>Cuando todos los estudios están validados aparece <strong>"Enviar TODO al paciente por WhatsApp"</strong>: le llegan sus resultados y la orden queda <strong>Entregada</strong> sola.</p>
+</div>
+
+<span class="parte dos">PARTE 2 · A FONDO</span>
+
+<h2 id="cotizar">6 · Cotizar sin cobrar</h2>
+<div class="tarjeta">
+  <p>Arma el carrito igual que una venta, pero en vez de COBRAR toca <strong>Cotizar</strong>:</p>
+  <figure class="movil"><img src="img/12-cotizar-boton.png" alt="Botón Cotizar"></figure>
+  <div class="paso"><div class="n">1</div><p><strong>Enviar por WhatsApp</strong> — si el paciente tiene número registrado.</p></div>
+  <div class="paso"><div class="n">2</div><p><strong>Descargar PDF</strong> — la cotización bonita con la imagen de cada área.</p></div>
+  <figure class="movil"><img src="img/13-cotizar-opciones.png" alt="Opciones de cotización"></figure>
+  <div class="ojo"><strong>Ojo:</strong> la cotización vale <strong>48 horas</strong> (lo dice el propio PDF) y NO registra venta ni folio.</div>
+</div>
+
+<h2 id="subsecuente">7 · Paciente subsecuente (precio especial)</h2>
+<div class="tarjeta">
+  <p>Si un estudio tiene <em>precio subsecuente</em> en el catálogo, los pacientes que ya vinieron antes pagan ese precio en su segunda visita en adelante.</p>
+  <p><strong>No tienes que acordarte:</strong> al elegir al paciente, la app revisa su historial y marca sola la casilla <em>"Paciente subsecuente"</em> con el aviso "Detectado en automático". Puedes quitarla si no aplica. El sistema siempre re-verifica antes de cobrar: si es primera visita, cobra precio de lista aunque la casilla esté marcada.</p>
+</div>
+
+<h2 id="catalogo">8 · El catálogo de estudios</h2>
+<div class="tarjeta">
+  <p>Inicio → <strong>Catálogo de estudios</strong>. Busca por nombre, alias o clave; filtra por área.</p>
+  <div class="paso"><div class="n">1</div><p><strong>Editar</strong>: precio, precio subsecuente, tiempo de entrega, alias (las 6 formas de escribir "USG obstétrico").</p></div>
+  <div class="paso"><div class="n">2</div><p><strong>Activo/Inactivo</strong>: desactivar lo quita de la caja SIN borrar su historia. Dentro de Editar también está <strong>Eliminar</strong> — pero si el estudio ya tiene ventas, la app lo protege y te sugiere desactivarlo.</p></div>
+  <figure><img src="img/14-catalogo.png" alt="Catálogo de estudios"></figure>
+</div>
+
+<h2 id="equipo">9 · Equipo y accesos (quién puede qué)</h2>
+<div class="tarjeta">
+  <p>Inicio → <strong>Equipo y accesos</strong>. Aquí dirección da de alta a cada persona con su correo, contraseña y —lo importante— su <strong>área</strong>:</p>
+  <table>
+    <tr><th>Rol / área</th><th>Qué puede</th></tr>
+    <tr><td><strong>Dirección (gerencia)</strong></td><td>Todo: precios, descuentos, reportes, panel, validar resultados.</td></tr>
+    <tr><td><strong>Recepción (sin área)</strong></td><td>Cobra, mueve órdenes de cualquier área, entrega. No ve dinero de reportes ni da descuentos.</td></tr>
+    <tr><td><strong>Con área (lab / rayos X / USG)</strong></td><td>Solo toca los estudios de SU área: los comienza, sube el estudio y los marca listos. No entrega órdenes.</td></tr>
+  </table>
+  <figure><img src="img/15-equipo.png" alt="Equipo y accesos"></figure>
+</div>
+
+<h2 id="panel">10 · Promos, lealtad y WhatsApp de áreas</h2>
+<div class="tarjeta">
+  <p>Inicio → <strong>Promociones y lealtad</strong> (solo dirección). Ahí viven:</p>
+  <ul>
+    <li><strong>Promo del mes</strong>: se imprime sola en cada ticket mientras esté activa.</li>
+    <li><strong>Códigos de descuento</strong>: solo dirección los crea y los aplica.</li>
+    <li><strong>Lealtad</strong>: cada N visitas → premio; la app avisa cuando a un paciente ya le toca.</li>
+    <li><strong>WhatsApp de cada área</strong>: los números a los que llega la comanda (laboratorio, rayos X, ultrasonido, recepción).</li>
+    <li><strong>Comanda automática</strong>: con la API de Meta conectada, la comanda llega sola al cobrar.</li>
+  </ul>
+  <figure><img src="img/16-panel-promos.png" alt="Panel de dirección"></figure>
+</div>
+
+<h2 id="respaldo">11 · Espacio y respaldo de estudios</h2>
+<div class="tarjeta">
+  <p>Al final del mismo panel está <strong>"Estudios: espacio y respaldo"</strong>. La nube guarda los estudios del día a día; la <strong>copia de largo plazo va en la computadora del negocio</strong> (la ley pide conservar resultados <strong>mínimo 5 años</strong>).</p>
+  <div class="paso"><div class="n">1</div><p>Elige el rango (por ejemplo, el mes pasado) y toca <strong>Ver qué hay</strong> → <strong>Descargar respaldo</strong>: baja un ZIP con los estudios ya entregados y su índice.</p></div>
+  <div class="paso"><div class="n">2</div><p>Copia el ZIP a una <strong>USB o disco externo</strong> (segunda copia), palomea la casilla y toca <strong>Liberar espacio</strong>. La nube se vacía; el registro de cada estudio se conserva.</p></div>
+  <figure><img src="img/17-respaldo.png" alt="Respaldo de estudios"></figure>
+  <div class="alerta"><strong>Regla de oro:</strong> nunca borres los ZIP de respaldo — son el expediente. Guárdalos 5 años mínimo.</div>
+</div>
+
+<h2 id="finanzas">12 · Finanzas y corte</h2>
+<div class="tarjeta">
+  <p>La pestaña <strong>Finanzas</strong> (abajo) concentra ingresos, egresos y el <strong>corte por turno</strong>: se abre el turno, se cobra el día, y al cerrar el corte la app cuadra lo cobrado por método de pago. Los reportes del dinero completo son de dirección.</p>
+  <figure><img src="img/18-finanzas.png" alt="Finanzas"></figure>
+</div>
+
+<h2 id="practica">13 · Modo práctica (para aprender sin miedo)</h2>
+<div class="tarjeta">
+  <p>En Nueva Venta, arriba a la derecha está el interruptor <strong>Modo práctica</strong>. Con él encendido puedes cobrar de mentiritas: esas ventas <strong>no entran</strong> al corte ni a los reportes. Perfecto para entrenar a alguien nuevo. Apágalo para trabajar de verdad.</p>
+</div>
+
+<h2 id="faq">14 · ¿Qué hago si…?</h2>
+<div class="tarjeta">
+  <table>
+    <tr><th>Situación</th><th>Qué hacer</th></tr>
+    <tr><td>Me equivoqué de estudio antes de cobrar</td><td>Toca el − del estudio en el carrito y quítalo. Nada quedó registrado hasta que se cobra.</td></tr>
+    <tr><td>Marqué una orden como Entregada por error</td><td>En la columna Entregadas, toca <strong>‹ Regresar (se entregó por error)</strong>.</td></tr>
+    <tr><td>No encuentro al paciente</td><td>Busca por TELÉFONO (es lo más seguro). Si de plano no está, dala de alta — la app avisa si se parece a alguien ya registrado.</td></tr>
+    <tr><td>No aparece un estudio en la caja</td><td>Busca por sus otras formas de escribirlo (alias) o revisa en el Catálogo que esté <strong>Activo</strong>.</td></tr>
+    <tr><td>Sale "Sin corte abierto"</td><td>La venta se registra igual — solo avísale a gerencia para abrir el corte del turno.</td></tr>
+    <tr><td>La app no deja marcar "Listo"</td><td>Primero hay que <strong>subir el estudio</strong>: Detalle › Subir estudio / capturar resultados.</td></tr>
+    <tr><td>"Ese estudio es de otra área"</td><td>Cada quien mueve solo lo suyo. Recepción o dirección pueden mover cualquier área.</td></tr>
+    <tr><td>Un paciente pide un estudio de hace meses</td><td>Si ya no está en la nube, está en el <strong>ZIP de respaldo</strong> de la computadora del negocio (búscalo por folio en el índice del ZIP).</td></tr>
+    <tr><td>Se me cerró la sesión</td><td>Vuelve a entrar con tu correo y contraseña. Lo cobrado no se pierde.</td></tr>
+    <tr><td>No hay internet</td><td>La caja guarda la venta y la manda sola cuando regresa la conexión.</td></tr>
+  </table>
+</div>
+
+<p class="pie">Diagnogen POS · Manual de uso · Las pantallas son de la app real (datos de demostración).<br>
+¿Buscabas el manual de pruebas del sistema? Está en <a href="pruebas.html">pruebas.html</a>.</p>
+
+</div>
+</body>
+</html>
